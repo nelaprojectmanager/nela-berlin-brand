@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nela Berlin — Portafolio Profesional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; background:#ece8e1; font-family:var(--sans); color:var(--ink); }
+  .page{ width:816px; min-height:1056px; margin:28px auto; background:var(--paper); position:relative; box-shadow:0 18px 60px rgba(40,50,63,.18); overflow:hidden; }
+  .gridbg{ position:absolute; inset:0; }
+  .pad{ position:relative; padding:48px 60px; }
+  /* cover */
+  .cover{ background:var(--ink); color:#fff; }
+  .cover .pad{ min-height:1056px; display:flex; flex-direction:column; }
+  .coordmark{ color:var(--coral); }
+  .cv-top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .cv-name{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:96px; line-height:.9; margin-top:120px; }
+  .cv-role{ font-family:var(--sans); font-weight:600; text-transform:uppercase; letter-spacing:.26em; font-size:13px; color:var(--blue); margin-top:24px; }
+  .cv-title{ font-family:var(--serif); font-style:italic; font-size:34px; color:#fff; margin-top:auto; max-width:18ch; line-height:1.1; }
+  .cv-sub{ font-size:14px; color:var(--slate-soft); margin-top:14px; max-width:46ch; line-height:1.6; }
+  .cv-foot{ display:flex; gap:26px; margin-top:30px; padding-top:22px; border-top:1px solid rgba(255,255,255,.15); }
+  .cv-foot span{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--blue); text-transform:uppercase; }
+  /* section header band */
+  .band{ display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+  .band .tag{ font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--coral); }
+  .band .ln{ flex:1; height:1px; background:var(--line); }
+  .band .idx{ font-family:var(--mono); font-size:10px; color:var(--slate); }
+  h1.sec{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:42px; color:var(--ink); margin:0 0 14px; line-height:1; }
+  /* case card */
+  .case{ border:1px solid var(--line); border-radius:11px; padding:14px 26px; margin-bottom:9px; background:#fff; position:relative; }
+  .case::before{ content:''; position:absolute; left:0; top:16px; bottom:16px; width:3px; background:var(--coral); border-radius:3px; }
+  .case .ch{ margin-bottom:5px; }
+  .case .name{ font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink); line-height:1.15; white-space:nowrap; }
+  .case .org{ font-size:11.5px; font-weight:700; color:var(--coral); text-transform:uppercase; letter-spacing:.08em; white-space:nowrap; }
+  .case .metaline{ display:flex; align-items:center; gap:10px; margin:4px 0 10px; flex-wrap:nowrap; }
+  .case .kicker{ font-family:var(--mono); font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--slate); white-space:nowrap; }
+  .case .dot{ width:3px; height:3px; border-radius:50%; background:var(--slate-soft); flex-shrink:0; }
+  .case .lead{ font-size:12px; line-height:1.5; color:var(--ink-2); margin:5px 0 10px; max-width:66ch; }
+  .case ul{ margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:7px 26px; }
+  .case li{ position:relative; padding-left:18px; font-size:12px; line-height:1.45; color:var(--ink-2); }
+  .case li::before{ content:''; position:absolute; left:0; top:5px; width:6px; height:6px; border:1px solid var(--coral); transform:rotate(45deg); }
+  .skillsband{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .skillsband .chip{ font-size:11.5px; font-weight:600; color:var(--ink); background:var(--blue); border:1px solid var(--blue-deep); border-radius:20px; padding:7px 14px; }
+  .closing{ background:var(--ink); color:#fff; border-radius:14px; padding:38px 40px; margin-top:6px; position:relative; overflow:hidden; }
+  .closing .q{ font-family:var(--serif); font-style:italic; font-size:30px; line-height:1.25; max-width:24ch; }
+  .closing .cta{ display:flex; gap:24px; margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.16); }
+  .closing .cta span{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--blue); text-transform:uppercase; }
+  @media print{ @page{ size:Letter; margin:0; } html,body{ background:#fff; } .page{ margin:0; box-shadow:none; width:100%; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <svg class="gridbg" aria-hidden="true"><defs><pattern id="gc" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gc)"/></svg>
+  <div class="pad">
+    <div class="cv-top">
+      <svg class="coordmark" width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="13" stroke="currentColor" stroke-width="1.3"/><circle cx="19" cy="19" r="1.6" fill="currentColor"/><line x1="19" y1="0" x2="19" y2="14" stroke="currentColor" stroke-width="1.3"/><line x1="19" y1="24" x2="19" y2="38" stroke="currentColor" stroke-width="1.3"/><line x1="0" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.3"/><line x1="24" y1="19" x2="38" y2="19" stroke="currentColor" stroke-width="1.3"/></svg>
+      <span style="font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--slate-soft);text-transform:uppercase;">Portafolio Profesional · 2026</span>
+    </div>
+    <div class="cv-name">Nela<br>Berlin</div>
+    <div class="cv-role">Ingeniera Mecánica · Máster en Gestión de Proyectos</div>
+    <div class="cv-title">Construyendo excelencia operativa, proyecto a proyecto.</div>
+    <p class="cv-sub">Una selección de trabajos en operaciones de servicio, puesta en marcha de plantas y mejora continua — donde la precisión técnica se une a la coordinación colaborativa. Con raíces en una temprana pasión por la energía, la sostenibilidad y la innovación.</p>
+    <div class="cv-foot">
+      <span>St. Louis, MO</span><span>ES / EN</span><span>nelaprojectmanager@gmail.com</span>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g2" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g2)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">Trabajo Seleccionado</span><span class="ln"></span><span class="idx">01 — 04</span></div>
+    <h1 class="sec">Portafolio de proyectos</h1>
+
+    <div class="case">
+      <div class="ch"><span class="name">Operaciones y Coordinación de Servicio</span></div>
+      <div class="metaline"><span class="org">Aspen Spas</span><span class="dot"></span><span class="kicker">Gestión de Servicio</span></div>
+      <p class="lead">La columna operativa del servicio técnico — programación, órdenes de trabajo y mejora continua — alineada entre clientes, ventas, producción y servicio.</p>
+      <ul>
+        <li>Coordiné la programación de técnicos y el seguimiento integral de órdenes de trabajo.</li>
+        <li>Implementé sistemas de seguimiento operativo que dan soporte a más de 100 órdenes de servicio al mes, mejorando la visibilidad del flujo de trabajo.</li>
+        <li>Implementé mejoras de procesos para la eficiencia y la trazabilidad.</li>
+        <li>Desarrollé sistemas de control, documentación y seguimiento para el servicio.</li>
+      </ul>
+    </div>
+
+    <div class="case">
+      <div class="ch"><span class="name">Puesta en Marcha de Planta de Aceite de Oliva</span></div>
+      <div class="metaline"><span class="org">Roghur S.A.</span><span class="dot"></span><span class="kicker">Proyecto desde Cero</span></div>
+      <p class="lead">Puse en marcha una planta de aceite de oliva desde cero — coordinando con Ingeniería de Alimentos y supervisando el montaje y arranque de los equipos de proceso.</p>
+      <ul>
+        <li>Participé en la implementación y puesta en marcha de una planta desde cero.</li>
+        <li>Coordiné la instalación y puesta en funcionamiento de equipos industriales.</li>
+        <li>Verifiqué alineación, simetría y correcta instalación de la maquinaria.</li>
+        <li>Apoyé la optimización de procesos productivos y operativos.</li>
+      </ul>
+    </div>
+
+    <div class="case">
+      <div class="ch"><span class="name">Taller Mecánico — Diseño y Dimensionamiento</span></div>
+      <div class="metaline"><span class="org">Proyecto Técnico</span><span class="dot"></span><span class="kicker">Minería e Industria</span></div>
+      <p class="lead">Diseñé y dimensioné un taller orientado a la mejora continua, seleccionando herramientas y recursos para clientes de minería e industria.</p>
+      <ul>
+        <li>Desarrollo conceptual y dimensionamiento de capacidad de las instalaciones.</li>
+        <li>Selección de herramientas, equipos y recursos para el modelo de servicio.</li>
+        <li>Participación en propuestas técnicas y licitaciones.</li>
+        <li>Enfoque en eficiencia operativa, productividad y calidad.</li>
+      </ul>
+    </div>
+
+    <div class="case">
+      <div class="ch"><span class="name">Desarrollo Profesional y Networking</span></div>
+      <div class="metaline"><span class="org">Project Management Institute (PMI)</span><span class="dot"></span><span class="kicker">Voluntariado</span></div>
+      <p class="lead">Voluntariado junto al directorio y equipos organizadores para impulsar iniciativas de networking, liderazgo y desarrollo profesional.</p>
+      <ul>
+        <li>Apoyé eventos profesionales e iniciativas de miembros.</li>
+        <li>Colaboré directamente con miembros del directorio y organizadores.</li>
+        <li>Impulsé la programación de networking y liderazgo.</li>
+        <li>Fortalecí la comunidad local de gestión de proyectos.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE + CLOSE -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g3" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g3)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">Capacidades</span><span class="ln"></span><span class="idx">05</span></div>
+    <h1 class="sec">Lo que aporto</h1>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:34px;">
+      <div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink);margin-bottom:12px;">Operaciones y ejecución</div>
+        <div class="skillsband">
+          <span class="chip">Gestión de Proyectos</span>
+          <span class="chip">Operaciones</span>
+          <span class="chip">Mejora de Procesos</span>
+          <span class="chip">Mejora Continua</span>
+          <span class="chip">Operaciones Industriales</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--ink);margin-bottom:12px;">Ingeniería e intereses</div>
+        <div class="skillsband">
+          <span class="chip">Máster en Gestión de Proyectos</span>
+          <span class="chip">Ingeniería Mecánica</span>
+          <span class="chip">Energías Renovables</span>
+          <span class="chip">Sostenibilidad y Eficiencia</span>
+          <span class="chip">Optimización de Procesos</span>
+          <span class="chip">Bilingüe ES / EN</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="band"><span class="tag">Enfoque</span><span class="ln"></span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:14px 0 30px;">
+      <div style="border-top:2px solid var(--ink);padding-top:14px;">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:.12em;">01</div>
+        <div style="font-size:14px;font-weight:700;margin:6px 0 5px;">Ver el sistema completo</div>
+        <div style="font-size:12px;line-height:1.55;color:var(--slate);">Entender cómo se conectan realmente clientes, producción y servicio antes de cambiar nada.</div>
+      </div>
+      <div style="border-top:2px solid var(--ink);padding-top:14px;">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:.12em;">02</div>
+        <div style="font-size:14px;font-weight:700;margin:6px 0 5px;">Hacerlo repetible</div>
+        <div style="font-size:12px;line-height:1.55;color:var(--slate);">Convertir soluciones puntuales en procesos documentados que todo el equipo puede ejecutar.</div>
+      </div>
+      <div style="border-top:2px solid var(--ink);padding-top:14px;">
+        <div style="font-family:var(--mono);font-size:11px;color:var(--coral);letter-spacing:.12em;">03</div>
+        <div style="font-size:14px;font-weight:700;margin:6px 0 5px;">Acompañar al equipo</div>
+        <div style="font-size:12px;line-height:1.55;color:var(--slate);">Alinear y acompañar al equipo para que la mejora perdure mucho después del lanzamiento.</div>
+      </div>
+    </div>
+
+    <div class="closing">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="g4" width="54" height="54" patternUnits="userSpaceOnUse"><path d="M54 0 L0 0 0 54" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g4)"/></svg>
+      <div style="position:relative;">
+        <div style="position:absolute;top:-4px;right:0;color:var(--coral);"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="q">«La estrategia se vuelve excelencia cuando todo el equipo puede repetirla.»</div>
+        <div class="cta">
+          <span>Hablemos → nelaprojectmanager@gmail.com</span>
+          <span>in/nela-berling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

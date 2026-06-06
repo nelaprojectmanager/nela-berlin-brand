@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nela Berlin — Personal Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html,body{ margin:0; background:#11161e; }
+  deck-stage:not(:defined){ visibility:hidden; }
+  deck-stage{ --pad:96px; }
+  section{ font-family:var(--sans); color:var(--ink); overflow:hidden; }
+  .s{ width:100%; height:100%; position:relative; box-sizing:border-box; }
+  .gridbg{ position:absolute; inset:0; pointer-events:none; }
+  .cmark{ color:var(--coral); }
+  .eyebrow{ font-family:var(--sans); font-weight:600; text-transform:uppercase; letter-spacing:.28em; }
+  .mono{ font-family:var(--mono); }
+  .serif-i{ font-family:var(--serif); font-style:italic; font-weight:500; }
+  .pageno{ position:absolute; bottom:48px; right:64px; font-family:var(--mono); font-size:18px; letter-spacing:.12em; color:var(--slate); }
+  .kicker-row{ display:flex; align-items:center; gap:20px; }
+  .kicker-row .ln{ width:64px; height:2px; background:var(--coral); }
+  /* photo treatments */
+  .photo-fill{ background-image:url('assets/nela-graded.png?v=3'); background-size:cover; }
+
+  /* SLIDE 1 — intro */
+  .s1{ background:var(--cream); display:grid; grid-template-columns:1fr 620px; }
+  .s1 .left{ padding:var(--pad); display:flex; flex-direction:column; justify-content:center; position:relative; }
+  .s1 .name{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:168px; line-height:.86; color:var(--ink); }
+  .s1 .role{ margin-top:34px; font-size:22px; letter-spacing:.26em; color:var(--slate); }
+  .s1 .tag{ margin-top:40px; font-size:30px; line-height:1.4; color:var(--ink-2); max-width:20ch; }
+  .s1 .right{ position:relative; }
+  .s1 .right .img{ position:absolute; inset:0; background-image:url('assets/nela-graded.png?v=3'); background-size:cover; background-position:50% 22%; }
+  .s1 .right .fade{ position:absolute; inset:0; background:linear-gradient(90deg,var(--cream),rgba(243,238,230,0) 26%); }
+  .s1 .coordbig{ position:absolute; top:54px; right:54px; color:rgba(255,255,255,.85); }
+
+  /* generic dark content slide */
+  .dark{ background:var(--ink); color:#fff; padding:var(--pad); display:flex; flex-direction:column; }
+  .dark .head{ display:flex; align-items:center; gap:22px; margin-bottom:54px; }
+  .dark .head .idx{ font-family:var(--mono); font-size:20px; color:var(--coral-soft); letter-spacing:.1em; }
+  .dark .head .t{ font-family:var(--serif); font-style:italic; font-size:64px; }
+  .dark .head .ln{ flex:1; height:1px; background:rgba(255,255,255,.18); }
+
+  /* SLIDE 2 — value prop */
+  .vp{ display:grid; grid-template-columns:repeat(3,1fr); gap:34px; flex:1; }
+  .vp .card{ border:1px solid rgba(255,255,255,.16); border-radius:18px; padding:46px 40px; display:flex; flex-direction:column; gap:18px; background:rgba(255,255,255,.02); }
+  .vp .num{ font-family:var(--mono); font-size:17px; color:var(--coral-soft); letter-spacing:.14em; }
+  .vp .h{ font-family:var(--serif); font-style:italic; font-size:42px; line-height:1.04; color:#fff; }
+  .vp .b{ font-size:21px; line-height:1.55; color:var(--blue); }
+
+  /* SLIDE 3 — achievements, light */
+  .light{ background:var(--paper); padding:var(--pad); display:flex; flex-direction:column; }
+  .light .head{ display:flex; align-items:center; gap:22px; margin-bottom:46px; }
+  .light .head .idx{ font-family:var(--mono); font-size:20px; color:var(--coral); letter-spacing:.1em; }
+  .light .head .t{ font-family:var(--serif); font-style:italic; font-size:64px; color:var(--ink); }
+  .light .head .ln{ flex:1; height:1px; background:var(--line); }
+  .ach{ display:flex; flex-direction:column; gap:24px; flex:1; }
+  .ach .row{ display:grid; grid-template-columns:300px 1fr; gap:40px; padding:28px 0; border-top:1px solid var(--line); align-items:start; }
+  .ach .row:last-child{ border-bottom:1px solid var(--line); }
+  .ach .org{ display:flex; flex-direction:column; gap:8px; }
+  .ach .org .nm{ font-family:var(--serif); font-style:italic; font-size:34px; color:var(--ink); line-height:1.05; }
+  .ach .org .k{ font-family:var(--mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); }
+  .ach .txt{ font-size:23px; line-height:1.5; color:var(--ink-2); }
+
+  /* SLIDE 4 — how I work */
+  .flow{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; flex:1; align-content:center; }
+  .flow .step{ position:relative; }
+  .flow .step .n{ font-family:var(--serif); font-style:italic; font-size:96px; color:var(--coral-soft); line-height:.8; }
+  .flow .step .h{ font-family:var(--serif); font-style:italic; font-size:40px; color:#fff; margin:18px 0 16px; }
+  .flow .step .b{ font-size:21px; line-height:1.55; color:var(--blue); max-width:26ch; }
+  .flow .step::after{ content:''; position:absolute; top:46px; right:-26px; width:14px; height:14px; border-right:2px solid var(--coral); border-top:2px solid var(--coral); transform:rotate(45deg); }
+  .flow .step:last-child::after{ display:none; }
+
+  /* SLIDE 5 — closing */
+  .s5{ background:var(--cream); display:grid; grid-template-columns:1.15fr 1fr; }
+  .s5 .left{ padding:var(--pad); display:flex; flex-direction:column; justify-content:center; }
+  .s5 .goal{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:84px; line-height:1.02; color:var(--ink); }
+  .s5 .goal em{ color:var(--coral); font-style:italic; }
+  .s5 .sub{ margin-top:32px; font-size:24px; line-height:1.55; color:var(--ink-2); max-width:30ch; }
+  .s5 .contact{ margin-top:54px; display:flex; flex-direction:column; gap:16px; }
+  .s5 .contact .row{ display:flex; align-items:center; gap:16px; }
+  .s5 .contact .k{ font-family:var(--mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); width:120px; }
+  .s5 .contact .v{ font-size:23px; color:var(--ink); font-weight:600; }
+  .s5 .right{ position:relative; }
+  .s5 .right .img{ position:absolute; inset:0; background-image:url('assets/nela-graded.png?v=3'); background-size:cover; background-position:50% 20%; }
+  .s5 .right .fade{ position:absolute; inset:0; background:linear-gradient(90deg,var(--cream),rgba(243,238,230,0) 28%); }
+  .s5 .right .bar{ position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--coral); }
+  .foc{ font-size:17px; font-weight:600; color:var(--ink); background:var(--blue); border:1px solid var(--blue-deep); border-radius:24px; padding:9px 18px; }
+
+  /* Static, always-visible content (no entrance animation — keeps the deck
+     reliable under the stage's continuous rescale). */
+  .anim, .anim2, .anim3{ opacity:1; }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+  <!-- 1 · INTRO -->
+  <section data-label="Intro">
+    <div class="s s1">
+      <div class="left">
+        <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g1" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" stroke="rgba(40,50,63,.045)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g1)"/></svg>
+        <div class="kicker-row anim" style="position:relative;"><span class="cmark"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13.5" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.7" fill="currentColor"/><line x1="20" y1="0" x2="20" y2="14.5" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="25.5" x2="20" y2="40" stroke="currentColor" stroke-width="1.4"/><line x1="0" y1="20" x2="14.5" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="25.5" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="1.4"/></svg></span><span class="eyebrow" style="font-size:17px;color:var(--coral);">Personal Introduction</span></div>
+        <div class="name anim2" style="position:relative;margin-top:36px;">Nela<br>Berlin</div>
+        <div class="role eyebrow anim2" style="position:relative;">Mechanical Engineer · M.Sc. Project Management</div>
+        <div class="tag serif-i anim3" style="position:relative;">Turning technical precision into operational excellence.</div>
+        <div class="anim3" style="position:relative;margin-top:26px;font-size:19px;line-height:1.6;color:var(--slate);max-width:30ch;">Drawn to engineering and energy since childhood — through a family renewable-energy business — with a lasting passion for innovation, sustainability, and continuous improvement.</div>
+      </div>
+      <div class="right">
+        <div class="img"></div>
+        <div class="fade"></div>
+        <span class="coordbig"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        <span class="mono" style="position:absolute;bottom:48px;right:48px;color:rgba(255,255,255,.85);font-size:16px;letter-spacing:.14em;">ST. LOUIS · ES / EN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · VALUE -->
+  <section data-label="Value">
+    <div class="s dark">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="g2d" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g2d)"/></svg>
+      <div class="head" style="position:relative;"><span class="idx">01</span><span class="t">What I bring</span><span class="ln"></span></div>
+      <div class="vp" style="position:relative;">
+        <div class="card anim"><div class="num">/ 01</div><div class="h">Engineer's rigor</div><div class="b">A mechanical engineer's eye for how systems really work — and where they break.</div></div>
+        <div class="card anim2"><div class="num">/ 02</div><div class="h">Operator's discipline</div><div class="b">I turn one-off fixes into documented, repeatable processes the whole team can run.</div></div>
+        <div class="card anim3"><div class="num">/ 03</div><div class="h">Leader's clarity</div><div class="b">Aligning customers, production, and service around a single, shared way of working.</div></div>
+      </div>
+      <div class="pageno">02 / 05</div>
+    </div>
+  </section>
+
+  <!-- 3 · ACHIEVEMENTS -->
+  <section data-label="Track record">
+    <div class="s light">
+      <div class="head"><span class="idx">02</span><span class="t">Track record</span><span class="ln"></span></div>
+      <div class="ach">
+        <div class="row anim">
+          <div class="org"><span class="nm">Aspen Spas</span><span class="k">Service Operations</span></div>
+          <div class="txt">Built the scheduling, work-order, inventory, and warranty systems that kept customers, sales, production, and service moving in sync.</div>
+        </div>
+        <div class="row anim2">
+          <div class="org"><span class="nm">Roghur S.A.</span><span class="k">Plant Commissioning</span></div>
+          <div class="txt">Helped commission a greenfield olive-oil plant from zero — coordinating installation and verifying the assembly of process equipment.</div>
+        </div>
+        <div class="row anim3">
+          <div class="org"><span class="nm">PMI · Workshop Design</span><span class="k">Leadership &amp; Projects</span></div>
+          <div class="txt">Designed a continuous-improvement workshop for industry, and advanced the local PM community through volunteer leadership.</div>
+        </div>
+      </div>
+      <div class="pageno">03 / 05</div>
+    </div>
+  </section>
+
+  <!-- 4 · HOW I WORK -->
+  <section data-label="How I work">
+    <div class="s dark">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="g4d" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g4d)"/></svg>
+      <div class="head" style="position:relative;"><span class="idx">03</span><span class="t">How I work</span><span class="ln"></span></div>
+      <div class="flow" style="position:relative;">
+        <div class="step anim"><div class="n">1</div><div class="h">See the system</div><div class="b">Map how people, process, and product actually connect before changing anything.</div></div>
+        <div class="step anim2"><div class="n">2</div><div class="h">Make it repeatable</div><div class="b">Turn insight into documented processes that hold up under real-world pressure.</div></div>
+        <div class="step anim3"><div class="n">3</div><div class="h">Lead the people</div><div class="b">Coach and align the team so the improvement sticks long after launch.</div></div>
+      </div>
+      <div class="pageno">04 / 05</div>
+    </div>
+  </section>
+
+  <!-- 5 · CLOSING -->
+  <section data-label="Where I'm going">
+    <div class="s s5">
+      <div class="left">
+        <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g5" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" stroke="rgba(40,50,63,.045)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g5)"/></svg>
+        <div class="kicker-row anim" style="position:relative;margin-bottom:30px;"><span class="ln"></span><span class="eyebrow" style="font-size:16px;color:var(--coral);">Where I'm going</span></div>
+        <div class="goal anim2" style="position:relative;">From coordination<br>to <em>operational<br>impact.</em></div>
+        <div class="sub anim3" style="position:relative;">Ready to take on broader project-coordination and operations roles — and keep improving how multidisciplinary teams work together.</div>
+        <div class="contact anim3" style="position:relative;">
+          <div class="row"><span class="k">Email</span><span class="v">nelaprojectmanager@gmail.com</span></div>
+          <div class="row"><span class="k">LinkedIn</span><span class="v">in/nela-berling-562434186</span></div>
+        </div>
+        <div class="anim3" style="position:relative;margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;max-width:34ch;">
+          <span class="foc">Renewable Energy</span>
+          <span class="foc">Operations</span>
+          <span class="foc">Continuous Improvement</span>
+          <span class="foc">Sustainability</span>
+        </div>
+      </div>
+      <div class="right">
+        <div class="img"></div>
+        <div class="fade"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+<script src="deck-stage.js"></script>
+</body>
+</html>

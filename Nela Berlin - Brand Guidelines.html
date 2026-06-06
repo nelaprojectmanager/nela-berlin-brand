@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nela Berlin — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; background:#ece8e1; font-family:var(--sans); color:var(--ink); }
+  .page{ width:816px; height:1056px; margin:28px auto; background:var(--paper); position:relative; box-shadow:0 18px 60px rgba(40,50,63,.18); overflow:hidden; }
+  .gridbg{ position:absolute; inset:0; pointer-events:none; }
+  .pad{ position:relative; padding:56px 60px; height:100%; display:flex; flex-direction:column; }
+  .band{ display:flex; align-items:center; gap:16px; margin-bottom:6px; }
+  .band .tag{ font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--coral); }
+  .band .ln{ flex:1; height:1px; background:var(--line); }
+  .band .idx{ font-family:var(--mono); font-size:10px; color:var(--slate); }
+  h1.sec{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:44px; color:var(--ink); margin:0 0 8px; line-height:1; }
+  .sec-note{ font-size:13px; line-height:1.6; color:var(--slate); max-width:60ch; margin-bottom:26px; }
+  .mono{ font-family:var(--mono); }
+  .serif-i{ font-family:var(--serif); font-style:italic; }
+  /* cover */
+  .cover{ background:var(--ink); color:#fff; }
+  .cover .pad{ justify-content:space-between; }
+  .cover .nm{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:104px; line-height:.9; margin-top:40px; }
+  .cover .role{ font-weight:600; text-transform:uppercase; letter-spacing:.26em; font-size:13px; color:var(--blue); margin-top:26px; }
+  .cover .title{ font-family:var(--serif); font-style:italic; font-size:40px; margin-top:auto; }
+  .cover .sub{ font-size:14px; color:var(--slate-soft); margin-top:14px; max-width:48ch; line-height:1.6; }
+  .cover .foot{ display:flex; gap:24px; margin-top:30px; padding-top:22px; border-top:1px solid rgba(255,255,255,.15); font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--blue); text-transform:uppercase; }
+  /* logo blocks */
+  .logo-hero{ border:1px solid var(--line); border-radius:14px; background:var(--cream); display:flex; align-items:center; justify-content:center; height:240px; position:relative; }
+  .corner{ position:absolute; width:10px; height:10px; border:1px solid var(--line-2); }
+  .variants{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:16px; }
+  .vbox{ border:1px solid var(--line); border-radius:11px; height:150px; display:flex; align-items:center; justify-content:center; position:relative; }
+  .vbox.dark{ background:var(--ink); }
+  .vlabel{ font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); text-align:center; margin-top:9px; }
+  .dos{ display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:auto; }
+  .do h4{ font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; margin:0 0 10px; }
+  .do.y h4{ color:#1f8a5b; } .do.n h4{ color:#c0473f; }
+  .do ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .do li{ font-size:12px; line-height:1.45; color:var(--ink-2); padding-left:16px; position:relative; }
+  .do li::before{ content:''; position:absolute; left:0; top:6px; width:5px; height:5px; border-radius:50%; }
+  .do.y li::before{ background:#1f8a5b; } .do.n li::before{ background:#c0473f; }
+  /* color */
+  .swrow{ display:grid; grid-template-columns:repeat(6,1fr); gap:14px; }
+  .sw .chip{ height:96px; border-radius:9px; border:1px solid var(--line); }
+  .sw .nm{ font-size:12.5px; font-weight:600; margin-top:9px; }
+  .sw .hex{ font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; color:var(--slate); margin-top:3px; }
+  .sw .use{ font-size:10.5px; color:var(--slate); margin-top:5px; line-height:1.35; }
+  /* type */
+  .type-spec{ border-top:1px solid var(--line); padding:22px 0; display:grid; grid-template-columns:150px 1fr; gap:24px; align-items:baseline; }
+  .type-spec .meta .fn{ font-size:13px; font-weight:700; }
+  .type-spec .meta .role{ font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--slate); margin-top:4px; }
+  .type-spec .meta .wt{ font-size:11px; color:var(--slate); margin-top:8px; }
+  .scale-row{ display:flex; align-items:baseline; gap:18px; padding:9px 0; border-top:1px dashed var(--line); }
+  .scale-row .lbl{ font-family:var(--mono); font-size:10px; color:var(--coral); width:90px; }
+  /* photo */
+  .ph-grid{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .ph{ height:230px; border-radius:11px; overflow:hidden; position:relative; border:1px solid var(--line); }
+  .ph .img{ position:absolute; inset:0; background-size:cover; background-position:50% 20%; }
+  .ph .cap{ position:absolute; left:0; right:0; bottom:0; padding:22px 14px 12px; background:linear-gradient(transparent,rgba(28,38,52,.82)); font-family:var(--mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:#fff; }
+  .foot-note{ margin-top:auto; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--slate); text-transform:uppercase; }
+  @media print{ @page{ size:Letter; margin:0; } html,body{ background:#fff; } .page{ margin:0; box-shadow:none; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <svg class="gridbg" aria-hidden="true"><defs><pattern id="gc" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gc)"/></svg>
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <span style="color:var(--coral);"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13.5" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.7" fill="currentColor"/><line x1="20" y1="0" x2="20" y2="14.5" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="25.5" x2="20" y2="40" stroke="currentColor" stroke-width="1.4"/><line x1="0" y1="20" x2="14.5" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="25.5" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="1.4"/></svg></span>
+      <span class="mono" style="font-size:11px;letter-spacing:.2em;color:var(--slate-soft);text-transform:uppercase;">Brand Guidelines · v1 · 2026</span>
+    </div>
+    <div>
+      <div class="nm">Nela<br>Berlin</div>
+      <div class="role">Mechanical Engineer · M.Sc. Project Management</div>
+    </div>
+    <div>
+      <div class="title">The visual system</div>
+      <p class="sub">How the personal brand looks, sounds, and holds together — logo, color, typography, photography, and the rules that keep every touchpoint consistent.</p>
+      <div class="foot"><span>Logo</span><span>Color</span><span>Type</span><span>Photography</span><span>Usage</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g2" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g2)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">01 — Logo</span><span class="ln"></span><span class="idx">Coordinate system</span></div>
+    <h1 class="sec">The mark</h1>
+    <p class="sec-note">A serif italic wordmark paired with a precision <em>coordinate</em> mark — a quiet nod to engineering and exactness, without literal industrial clichés.</p>
+
+    <div class="logo-hero">
+      <span class="corner" style="top:14px;left:14px;border-right:none;border-bottom:none;"></span>
+      <span class="corner" style="top:14px;right:14px;border-left:none;border-bottom:none;"></span>
+      <span class="corner" style="bottom:14px;left:14px;border-right:none;border-top:none;"></span>
+      <span class="corner" style="bottom:14px;right:14px;border-left:none;border-top:none;"></span>
+      <div style="display:flex;align-items:center;gap:22px;">
+        <span style="color:var(--coral);"><svg width="50" height="50" viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="17" stroke="currentColor" stroke-width="1.5"/><circle cx="25" cy="25" r="2.2" fill="currentColor"/><line x1="25" y1="0" x2="25" y2="18" stroke="currentColor" stroke-width="1.5"/><line x1="25" y1="32" x2="25" y2="50" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="25" x2="18" y2="25" stroke="currentColor" stroke-width="1.5"/><line x1="32" y1="25" x2="50" y2="25" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <span style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:104px;line-height:.9;color:var(--ink);">Nela</span>
+      </div>
+    </div>
+
+    <div class="variants">
+      <div><div class="vbox"><span style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:58px;color:var(--ink);">Nela</span></div><div class="vlabel">Wordmark only</div></div>
+      <div><div class="vbox"><span style="color:var(--coral);"><svg width="56" height="56" viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="17" stroke="currentColor" stroke-width="1.5"/><circle cx="25" cy="25" r="2.2" fill="currentColor"/><line x1="25" y1="0" x2="25" y2="18" stroke="currentColor" stroke-width="1.5"/><line x1="25" y1="32" x2="25" y2="50" stroke="currentColor" stroke-width="1.5"/><line x1="0" y1="25" x2="18" y2="25" stroke="currentColor" stroke-width="1.5"/><line x1="32" y1="25" x2="50" y2="25" stroke="currentColor" stroke-width="1.5"/></svg></span></div><div class="vlabel">Coordinate mark</div></div>
+      <div><div class="vbox dark"><span style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:58px;color:#fff;">Nela</span></div><div class="vlabel">Reversed (on ink)</div></div>
+    </div>
+
+    <div class="dos">
+      <div class="do y">
+        <h4>◇ Do</h4>
+        <ul>
+          <li>Keep clear space ≥ the height of the “N” around the lockup.</li>
+          <li>Use coral only for the mark or a single accent detail.</li>
+          <li>Place on cream, paper, or ink backgrounds.</li>
+        </ul>
+      </div>
+      <div class="do n">
+        <h4>✕ Don't</h4>
+        <ul>
+          <li>Recolor the wordmark or stretch / condense it.</li>
+          <li>Add shadows, outlines, or gradients to the mark.</li>
+          <li>Place on busy photos without a scrim.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR + TYPE -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g3" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g3)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">02 — Color</span><span class="ln"></span><span class="idx">Palette</span></div>
+    <h1 class="sec">Color</h1>
+    <div class="swrow">
+      <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="nm">Slate Ink</div><div class="hex">#28323F</div><div class="use">Primary ink · dark grounds</div></div>
+      <div class="sw"><div class="chip" style="background:var(--slate)"></div><div class="nm">Mid Slate</div><div class="hex">#5B6C86</div><div class="use">Secondary text</div></div>
+      <div class="sw"><div class="chip" style="background:var(--blue)"></div><div class="nm">Powder Blue</div><div class="hex">#C9D6EA</div><div class="use">Soft support · chips</div></div>
+      <div class="sw"><div class="chip" style="background:var(--blush)"></div><div class="nm">Blush</div><div class="hex">#ECDCDB</div><div class="use">Soft support</div></div>
+      <div class="sw"><div class="chip" style="background:var(--cream)"></div><div class="nm">Cream</div><div class="hex">#F3EEE6</div><div class="use">Paper · backgrounds</div></div>
+      <div class="sw"><div class="chip" style="background:var(--coral)"></div><div class="nm">Coral</div><div class="hex">#C2856B</div><div class="use">Accent — sparingly</div></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:22px;align-items:center;">
+      <span style="flex:1;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--ink),var(--slate),var(--blue-deep),var(--blue),var(--blush),var(--cream));"></span>
+      <span class="mono" style="font-size:10px;letter-spacing:.12em;color:var(--slate);white-space:nowrap;text-transform:uppercase;">Slate → Cream</span>
+    </div>
+
+    <div class="band" style="margin-top:34px;"><span class="tag">03 — Type</span><span class="ln"></span><span class="idx">Three voices</span></div>
+    <h1 class="sec" style="font-size:38px;">Typography</h1>
+    <div class="type-spec" style="border-top:none;padding-top:6px;">
+      <div class="meta"><div class="fn">Cormorant Garamond</div><div class="role">Display · Serif</div><div class="wt">Italic · 500</div></div>
+      <div style="font-family:var(--serif);font-style:italic;font-weight:500;font-size:38px;color:var(--ink);line-height:1.05;">Leadership with precision</div>
+    </div>
+    <div class="type-spec">
+      <div class="meta"><div class="fn">Hanken Grotesk</div><div class="role">Body · UI</div><div class="wt">400 · 600 · 700</div></div>
+      <div style="font-size:20px;color:var(--ink);line-height:1.4;">Operations strategy &amp; process improvement, set in a clean, modern grotesque.</div>
+    </div>
+    <div class="type-spec">
+      <div class="meta"><div class="fn">IBM Plex Mono</div><div class="role">Technical · Data</div><div class="wt">400</div></div>
+      <div class="mono" style="font-size:15px;letter-spacing:.1em;color:var(--ink);text-transform:uppercase;">38.62°N · STL · ES / EN · 2026</div>
+    </div>
+    <div class="foot-note"><span>Nela Berlin · Brand Guidelines</span><span>02 / 03 — Color &amp; Type</span></div>
+  </div>
+</section>
+
+<!-- PHOTO + USAGE -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g4" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g4)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">04 — Photography</span><span class="ln"></span><span class="idx">Portrait treatments</span></div>
+    <h1 class="sec">Photography</h1>
+    <p class="sec-note">One portrait, three consistent treatments. Always keep a calm, professional crop with the face centered; never over-filter.</p>
+    <div class="ph-grid">
+      <div class="ph"><div class="img" style="background-image:url('assets/nela-graded.png?v=3')"></div><div class="cap">Natural grade · primary</div></div>
+      <div class="ph"><div class="img" style="background-image:url('assets/nela-duotone.png?v=3')"></div><div class="cap">Duotone slate</div></div>
+      <div class="ph" style="background:var(--blue)"><div class="img" style="background-image:url('assets/nela-graded.png?v=3');mix-blend-mode:luminosity;opacity:.92"></div><div style="position:absolute;inset:0;background:var(--coral);mix-blend-mode:soft-light;opacity:.5"></div><div class="cap">Tinted · coral</div></div>
+    </div>
+
+    <div class="band" style="margin-top:34px;"><span class="tag">05 — Usage</span><span class="ln"></span><span class="idx">Voice &amp; motifs</span></div>
+    <h1 class="sec" style="font-size:38px;">Voice &amp; motifs</h1>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;">
+      <div>
+        <div class="serif-i" style="font-size:19px;color:var(--ink);margin-bottom:8px;">Tone of voice</div>
+        <p style="font-size:12.5px;line-height:1.6;color:var(--ink-2);margin:0;">Confident, clear, and warm. Strategic without jargon. Speak in outcomes and systems — “repeatable,” “aligned,” “measurable.” Bilingual ES / EN, never mixed mid-sentence.</p>
+      </div>
+      <div>
+        <div class="serif-i" style="font-size:19px;color:var(--ink);margin-bottom:8px;">Graphic motifs</div>
+        <p style="font-size:12.5px;line-height:1.6;color:var(--ink-2);margin:0;">The coordinate mark, a fine registration crosshair, hairline corner ticks, and a faint coordinate grid. Used quietly — structure, not decoration.</p>
+      </div>
+    </div>
+    <div class="foot-note"><span>nelaprojectmanager@gmail.com</span><span>03 / 03 — Photography &amp; Usage</span></div>
+  </div>
+</section>
+
+</body>
+</html>

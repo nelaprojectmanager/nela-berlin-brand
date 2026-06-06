@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nela Berlin — Media Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; background:#ece8e1; font-family:var(--sans); color:var(--ink); }
+  .page{ width:816px; height:1056px; margin:28px auto; background:var(--paper); position:relative; box-shadow:0 18px 60px rgba(40,50,63,.18); overflow:hidden; }
+  .gridbg{ position:absolute; inset:0; pointer-events:none; }
+  .pad{ position:relative; padding:60px 64px; height:100%; display:flex; flex-direction:column; }
+  .mono{ font-family:var(--mono); }
+  .serif-i{ font-family:var(--serif); font-style:italic; font-weight:500; }
+  .band{ display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+  .band .tag{ font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--coral); }
+  .band .ln{ flex:1; height:1px; background:var(--line); }
+  .band .idx{ font-family:var(--mono); font-size:10px; color:var(--slate); }
+  h1.sec{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:46px; color:var(--ink); margin:0 0 26px; line-height:1; }
+
+  /* ---------- COVER (Apple-premium) ---------- */
+  .cover{ background:var(--ink); color:#fff; }
+  .cover .pad{ padding:0; }
+  .cover .photo{ position:absolute; top:0; right:0; bottom:0; width:46%; }
+  .cover .photo .img{ position:absolute; inset:0; background-image:url('assets/nela-graded.png?v=3'); background-size:cover; background-position:50% 16%; }
+  .cover .photo .fade{ position:absolute; inset:0; background:linear-gradient(90deg,var(--ink),rgba(40,50,63,0) 42%); }
+  .cover .photo .bar{ position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--coral); }
+  .cover .content{ position:relative; z-index:2; padding:64px; height:100%; display:flex; flex-direction:column; }
+  .cover .top{ display:flex; justify-content:space-between; align-items:flex-start; }
+  .cover .nm{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:120px; line-height:.86; margin-top:auto; }
+  .cover .role{ font-weight:600; text-transform:uppercase; letter-spacing:.24em; font-size:13px; color:var(--blue); margin-top:30px; }
+  .cover .tagline{ font-family:var(--serif); font-style:italic; font-size:30px; color:#fff; margin-top:26px; max-width:16ch; line-height:1.2; }
+  .cover .foot{ margin-top:auto; padding-top:26px; border-top:1px solid rgba(255,255,255,.16); display:flex; gap:26px; }
+  .cover .foot span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--blue); text-transform:uppercase; }
+
+  /* ---------- BIO / AT A GLANCE ---------- */
+  .bio-lead{ font-family:var(--serif); font-style:italic; font-size:30px; line-height:1.34; color:var(--ink); max-width:24ch; }
+  .bio p{ font-size:14px; line-height:1.7; color:var(--ink-2); margin:30px 0 0; max-width:60ch; }
+  .glance{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px; }
+  .stat{ border-top:2px solid var(--ink); padding-top:14px; }
+  .stat .v{ font-family:var(--serif); font-style:italic; font-size:42px; color:var(--ink); line-height:1; }
+  .stat .v em{ color:var(--coral); font-style:italic; }
+  .stat .k{ font-size:12px; color:var(--slate); margin-top:8px; line-height:1.4; }
+  .twocol{ display:grid; grid-template-columns:1fr 1fr; gap:34px; margin-top:38px; }
+  .panel h4{ font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink); margin:0 0 14px; }
+  .panel ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .panel li{ position:relative; padding-left:18px; font-size:13.5px; line-height:1.5; color:var(--ink-2); }
+  .panel li::before{ content:''; position:absolute; left:0; top:6px; width:6px; height:6px; border:1px solid var(--coral); transform:rotate(45deg); }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chips .chip{ font-size:11.5px; font-weight:600; color:var(--ink); background:var(--blue); border:1px solid var(--blue-deep); border-radius:20px; padding:6px 13px; }
+
+  /* ---------- PROJECTS ---------- */
+  .pcard{ border:1px solid var(--line); border-radius:12px; padding:22px 26px; margin-bottom:14px; background:#fff; position:relative; }
+  .pcard::before{ content:''; position:absolute; left:0; top:20px; bottom:20px; width:3px; background:var(--coral); border-radius:3px; }
+  .pcard .ph{ display:flex; align-items:baseline; gap:12px; }
+  .pcard .pn{ font-family:var(--mono); font-size:12px; color:var(--coral); }
+  .pcard .nm{ font-family:var(--serif); font-style:italic; font-size:22px; color:var(--ink); line-height:1.15; white-space:nowrap; }
+  .pcard .ty{ position:absolute; top:24px; right:26px; font-family:var(--mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--slate); white-space:nowrap; }
+  .pcard p{ font-size:13px; line-height:1.55; color:var(--ink-2); margin:12px 0 0; max-width:62ch; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ background:var(--ink); color:#fff; }
+  .contact .pad{ justify-content:center; align-items:center; text-align:center; }
+  .contact .big{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:64px; line-height:1.08; max-width:18ch; }
+  .contact .big em{ color:var(--coral-soft); }
+  .contact .rows{ margin-top:46px; display:flex; flex-direction:column; gap:18px; min-width:420px; }
+  .contact .r{ display:grid; grid-template-columns:120px 1fr; gap:20px; align-items:baseline; text-align:left; padding:14px 0; border-top:1px solid rgba(255,255,255,.15); }
+  .contact .r .k{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); }
+  .contact .r .v{ font-size:19px; font-weight:600; }
+
+  .foot-note{ margin-top:auto; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; letter-spacing:.1em; color:var(--slate); text-transform:uppercase; }
+  @media print{ @page{ size:Letter; margin:0; } html,body{ background:#fff; } .page{ margin:0; box-shadow:none; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="page cover">
+  <div class="photo"><div class="img"></div><div class="fade"></div><div class="bar"></div></div>
+  <div class="content">
+    <div class="top">
+      <span style="color:var(--coral);"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13.5" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.7" fill="currentColor"/><line x1="20" y1="0" x2="20" y2="14.5" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="25.5" x2="20" y2="40" stroke="currentColor" stroke-width="1.4"/><line x1="0" y1="20" x2="14.5" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="25.5" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="1.4"/></svg></span>
+      <span class="mono" style="font-size:11px;letter-spacing:.2em;color:var(--slate-soft);text-transform:uppercase;">Media Kit · 2026</span>
+    </div>
+    <div style="margin-top:auto;">
+      <div class="nm">Nela<br>Berlin</div>
+      <div class="role">Mechanical Engineer · M.Sc. Project Management</div>
+      <div class="tagline">Operational excellence, by design.</div>
+    </div>
+    <div class="foot"><span>St. Louis, MO</span><span>ES / EN</span><span>Networking · Speaking · Roles</span></div>
+  </div>
+</section>
+
+<!-- BIO / AT A GLANCE -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g2" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g2)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">01 — Profile</span><span class="ln"></span><span class="idx">At a glance</span></div>
+    <h1 class="sec">About Nela</h1>
+    <div class="bio">
+      <div class="bio-lead">Mechanical engineer and project coordinator translating technical rigor into operational results.</div>
+      <p>A mechanical engineer with a Master's in Project Management &amp; Direction, Nela Berlin focuses on service operations, technical coordination, and continuous improvement — aligning customers, production, and service teams to deliver measurable, collaborative results. Her path began early, immersed in a family renewable-energy business that sparked a lasting passion for innovation, sustainability, and engineering with positive impact. She brings analytical thinking, collaborative leadership, and a process-improvement mindset to every project.</p>
+    </div>
+    <div class="glance">
+      <div class="stat"><div class="v"><em>4</em></div><div class="k">Signature projects across operations, energy &amp; industry</div></div>
+      <div class="stat"><div class="v">M.<em>Sc</em></div><div class="k">Master's in Project Management &amp; Direction</div></div>
+      <div class="stat"><div class="v">M.<em>Eng</em></div><div class="k">Mechanical engineering degree · bilingual ES / EN</div></div>
+    </div>
+    <div class="twocol">
+      <div class="panel">
+        <h4>Expertise</h4>
+        <ul>
+          <li>Project management &amp; end-to-end delivery</li>
+          <li>Operations &amp; service management</li>
+          <li>Process &amp; continuous improvement</li>
+          <li>Team leadership &amp; coordination</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h4>Focus &amp; interests</h4>
+        <div class="chips">
+          <span class="chip">Renewable Energy</span>
+          <span class="chip">Sustainability</span>
+          <span class="chip">Industrial Operations</span>
+          <span class="chip">Process Optimization</span>
+          <span class="chip">Infrastructure &amp; Tech</span>
+          <span class="chip">Leadership</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-note"><span>Nela Berlin · Media Kit</span><span>01 / 03 — Profile</span></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="page">
+  <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="g3" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(40,50,63,.04)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g3)"/></svg>
+  <div class="pad">
+    <div class="band"><span class="tag">02 — Portfolio</span><span class="ln"></span><span class="idx">Selected projects</span></div>
+    <h1 class="sec">Project highlights</h1>
+    <div class="pcard">
+      <div class="ph"><span class="pn">01</span><span class="nm">Olive-Oil Processing Plant</span><span class="ty">Roghur S.A.</span></div>
+      <p>Commissioned a processing plant from zero — coordinating equipment installation with Food Engineering, supervising assembly, and verifying alignment and start-up of process systems.</p>
+    </div>
+    <div class="pcard">
+      <div class="ph"><span class="pn">02</span><span class="nm">Mechanical Workshop Design</span><span class="ty">Mining &amp; Industry</span></div>
+      <p>Designed and sized a continuous-improvement workshop — selecting tooling and resources, and contributing to technical proposals and tenders for industrial clients.</p>
+    </div>
+    <div class="pcard">
+      <div class="ph"><span class="pn">03</span><span class="nm">Renewable Energy Foundations</span><span class="ty">Energy · Sustainability</span></div>
+      <p>Rooted in a family renewable-energy business — the origin of a lasting focus on sustainability, energy efficiency, and technology with positive impact.</p>
+    </div>
+    <div class="pcard">
+      <div class="ph"><span class="pn">04</span><span class="nm">PMI Volunteer Leadership</span><span class="ty">Community · Networking</span></div>
+      <p>Supported professional events with the Project Management Institute — advancing networking, leadership, and development initiatives alongside the board.</p>
+    </div>
+    <div style="margin-top:18px;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px;">
+      <span style="color:var(--coral);flex-shrink:0;"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span>
+      <div class="serif-i" style="font-size:19px;color:var(--ink);line-height:1.35;">“Strategy becomes excellence when the whole team can repeat it.”</div>
+    </div>
+    <div class="foot-note"><span>nelaprojectmanager@gmail.com</span><span>02 / 03 — Portfolio</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="page contact">
+  <svg class="gridbg" aria-hidden="true"><defs><pattern id="g4" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0 L0 0 0 64" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#g4)"/></svg>
+  <div class="pad">
+    <span style="color:var(--coral);margin-bottom:30px;"><svg width="44" height="44" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13.5" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.7" fill="currentColor"/><line x1="20" y1="0" x2="20" y2="14.5" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="25.5" x2="20" y2="40" stroke="currentColor" stroke-width="1.4"/><line x1="0" y1="20" x2="14.5" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="25.5" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="1.4"/></svg></span>
+    <div class="big">Let's <em>connect.</em></div>
+    <div class="rows">
+      <div class="r"><span class="k">Email</span><span class="v">nelaprojectmanager@gmail.com</span></div>
+      <div class="r"><span class="k">LinkedIn</span><span class="v">in/nela-berling-562434186</span></div>
+      <div class="r"><span class="k">Based in</span><span class="v">St. Louis, Missouri</span></div>
+      <div class="r"><span class="k">Languages</span><span class="v">Español · English</span></div>
+      <div class="r"><span class="k">Open to</span><span class="v">Roles · Networking · Speaking</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

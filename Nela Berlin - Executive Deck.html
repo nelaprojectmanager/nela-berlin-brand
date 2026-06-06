@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nela Berlin — Executive Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  html,body{ margin:0; background:#11161e; }
+  deck-stage:not(:defined){ visibility:hidden; }
+  section{ font-family:var(--sans); color:var(--ink); overflow:hidden; }
+  .s{ width:100%; height:100%; box-sizing:border-box; position:relative; }
+  .gridbg{ position:absolute; inset:0; pointer-events:none; }
+  .serif-i{ font-family:var(--serif); font-style:italic; font-weight:500; }
+  .mono{ font-family:var(--mono); }
+  .eyebrow{ font-weight:600; text-transform:uppercase; letter-spacing:.26em; }
+  .cmark{ color:var(--coral); }
+  .pad{ padding:96px 110px; height:100%; box-sizing:border-box; display:flex; flex-direction:column; }
+  .pageno{ position:absolute; bottom:54px; right:72px; font-family:var(--mono); font-size:17px; letter-spacing:.12em; }
+  .runhead{ position:absolute; top:54px; left:110px; display:flex; align-items:center; gap:16px; font-family:var(--mono); font-size:15px; letter-spacing:.14em; text-transform:uppercase; }
+  /* section head */
+  .shead{ display:flex; align-items:center; gap:22px; margin-bottom:56px; }
+  .shead .idx{ font-family:var(--mono); font-size:19px; letter-spacing:.1em; }
+  .shead .t{ font-family:var(--serif); font-style:italic; font-size:60px; white-space:nowrap; flex-shrink:0; }
+  .shead .ln{ flex:1; height:1px; }
+  /* light + ink */
+  .ink{ background:var(--ink); color:#fff; }
+  .ink .gl{ stroke:rgba(255,255,255,.05); } .ink .shead .ln{ background:rgba(255,255,255,.18); }
+  .ink .shead .idx{ color:var(--coral-soft); } .ink .pageno{ color:var(--slate-soft); } .ink .runhead{ color:var(--slate-soft); }
+  .cream{ background:var(--cream); } .cream .gl{ stroke:rgba(40,50,63,.05); }
+  .cream .shead .ln{ background:var(--line); } .cream .shead .idx{ color:var(--coral); } .cream .shead .t{ color:var(--ink); }
+  .cream .pageno{ color:var(--slate); } .cream .runhead{ color:var(--slate); }
+
+  /* title */
+  .title-s{ display:grid; grid-template-columns:1fr 560px; }
+  .title-s .l{ padding:96px 0 96px 110px; display:flex; flex-direction:column; justify-content:center; }
+  .title-s .big{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:104px; line-height:1.0; color:#fff; }
+  .title-s .sub{ font-size:26px; color:var(--blue); margin-top:30px; max-width:24ch; line-height:1.4; }
+  .title-s .meta{ margin-top:54px; display:flex; gap:30px; }
+  .title-s .meta .k{ font-family:var(--mono); font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--slate-soft); }
+  .title-s .meta .v{ font-size:18px; color:#fff; font-weight:600; margin-top:6px; }
+  .title-s .r{ position:relative; }
+  .title-s .r .img{ position:absolute; inset:0; background-image:url('assets/nela-graded.png?v=3'); background-size:cover; background-position:50% 18%; }
+  .title-s .r .fade{ position:absolute; inset:0; background:linear-gradient(90deg,var(--ink),rgba(40,50,63,0) 34%); }
+  .title-s .r .bar{ position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--coral); }
+
+  /* agenda */
+  .agenda{ display:flex; flex-direction:column; gap:0; flex:1; }
+  .ag{ display:grid; grid-template-columns:90px 1fr auto; gap:30px; align-items:center; padding:26px 0; border-top:1px solid var(--line); }
+  .ag:last-child{ border-bottom:1px solid var(--line); }
+  .ag .n{ font-family:var(--mono); font-size:18px; color:var(--coral); }
+  .ag .t{ font-family:var(--serif); font-style:italic; font-size:38px; color:var(--ink); }
+  .ag .d{ font-size:17px; color:var(--slate); }
+
+  /* framework 3col */
+  .three{ display:grid; grid-template-columns:repeat(3,1fr); gap:34px; flex:1; }
+  .three .card{ border:1px solid rgba(255,255,255,.16); border-radius:18px; padding:44px 38px; display:flex; flex-direction:column; gap:16px; }
+  .three .card .num{ font-family:var(--mono); font-size:16px; color:var(--coral-soft); }
+  .three .card .h{ font-family:var(--serif); font-style:italic; font-size:40px; color:#fff; }
+  .three .card .b{ font-size:20px; line-height:1.5; color:var(--blue); }
+
+  /* metrics */
+  .metrics{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; flex:1; align-content:center; }
+  .metric{ text-align:left; }
+  .metric .big{ font-family:var(--serif); font-style:italic; font-size:128px; line-height:.9; color:var(--ink); }
+  .metric .big em{ color:var(--coral); font-style:italic; }
+  .metric .lbl{ font-size:21px; color:var(--slate); margin-top:14px; line-height:1.4; max-width:18ch; }
+  .metric .rule{ width:64px; height:2px; background:var(--coral); margin:18px 0; }
+
+  /* roadmap */
+  .road{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; flex:1; align-content:center; }
+  .ph{ position:relative; padding:0 26px; }
+  .ph::before{ content:''; position:absolute; left:0; right:0; top:14px; height:2px; background:rgba(255,255,255,.16); }
+  .ph .dot{ width:14px; height:14px; border-radius:50%; background:var(--coral); position:relative; }
+  .ph .q{ font-family:var(--mono); font-size:15px; color:var(--coral-soft); margin:26px 0 12px; letter-spacing:.1em; }
+  .ph .h{ font-family:var(--serif); font-style:italic; font-size:30px; color:#fff; margin-bottom:12px; }
+  .ph .b{ font-size:17px; line-height:1.5; color:var(--blue); }
+
+  /* takeaways */
+  .takes{ display:flex; flex-direction:column; gap:22px; flex:1; }
+  .take{ display:grid; grid-template-columns:60px 1fr; gap:26px; align-items:start; padding:24px 0; border-top:1px solid var(--line); }
+  .take .n{ color:var(--coral); }
+  .take .tx{ font-family:var(--serif); font-style:italic; font-size:34px; color:var(--ink); line-height:1.2; }
+  .take .tx span{ font-family:var(--sans); font-style:normal; font-size:18px; color:var(--slate); display:block; margin-top:8px; line-height:1.5; }
+
+  /* closing */
+  .close-s{ display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+  .close-s .big{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:96px; line-height:1.05; color:#fff; }
+  .close-s .big em{ color:var(--coral-soft); }
+  .close-s .contact{ margin-top:48px; display:flex; gap:50px; }
+  .close-s .contact .k{ font-family:var(--mono); font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:var(--coral-soft); }
+  .close-s .contact .v{ font-size:22px; color:#fff; font-weight:600; margin-top:8px; }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+  <!-- 1 TITLE -->
+  <section data-label="Title">
+    <div class="s ink title-s">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="gt" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gt)"/></svg>
+      <div class="l" style="position:relative;">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:36px;">
+          <span class="cmark"><svg width="38" height="38" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13.5" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.7" fill="currentColor"/><line x1="20" y1="0" x2="20" y2="14.5" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="25.5" x2="20" y2="40" stroke="currentColor" stroke-width="1.4"/><line x1="0" y1="20" x2="14.5" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="25.5" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="1.4"/></svg></span>
+          <span class="eyebrow" style="font-size:16px;color:var(--coral);">Quarterly Operations Review</span>
+        </div>
+        <div class="big">Operational<br>excellence,<br>by design.</div>
+        <div class="sub">A clear read on where operations stand — and how we raise the bar next quarter.</div>
+        <div class="meta">
+          <div><div class="k">Presented by</div><div class="v">Nela Berlin</div></div>
+          <div><div class="k">Quarter</div><div class="v">[Q_ · 2026]</div></div>
+        </div>
+      </div>
+      <div class="r"><div class="img"></div><div class="fade"></div><div class="bar"></div></div>
+    </div>
+  </section>
+
+  <!-- 2 AGENDA -->
+  <section data-label="Agenda">
+    <div class="s cream">
+      <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="ga" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#ga)"/></svg>
+      <div class="pad">
+        <div class="shead"><span class="idx">01</span><span class="t">Agenda</span><span class="ln"></span></div>
+        <div class="agenda">
+          <div class="ag"><span class="n">01</span><span class="t">Where we stand</span><span class="d">Context &amp; current state</span></div>
+          <div class="ag"><span class="n">02</span><span class="t">Operating model</span><span class="d">Process · People · Performance</span></div>
+          <div class="ag"><span class="n">03</span><span class="t">Results this quarter</span><span class="d">What moved, and why</span></div>
+          <div class="ag"><span class="n">04</span><span class="t">The road ahead</span><span class="d">Roadmap &amp; priorities</span></div>
+          <div class="ag"><span class="n">05</span><span class="t">Recommendations</span><span class="d">What we do next</span></div>
+        </div>
+      </div>
+      <div class="pageno">02 / 08</div>
+    </div>
+  </section>
+
+  <!-- 3 CONTEXT -->
+  <section data-label="Context">
+    <div class="s ink">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="gc" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gc)"/></svg>
+      <div class="pad">
+        <div class="shead"><span class="idx">02</span><span class="t" style="color:#fff;">Where we stand</span><span class="ln"></span></div>
+        <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:80px;flex:1;align-content:center;">
+          <div>
+            <div class="serif-i" style="font-size:46px;color:#fff;line-height:1.25;">Strong service, growing demand — and processes that need to scale with us.</div>
+            <p style="font-size:22px;line-height:1.6;color:var(--blue);margin-top:30px;max-width:34ch;">Our teams deliver. The opportunity now is to make that delivery <em style="color:#fff;font-style:normal;font-weight:600;">repeatable</em> — less dependent on heroics, more on systems.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:22px;">
+            <div style="border-left:2px solid var(--coral);padding-left:24px;"><div class="mono" style="font-size:14px;color:var(--coral-soft);letter-spacing:.1em;">CHALLENGE 01</div><div style="font-size:21px;color:#fff;margin-top:8px;line-height:1.4;">Manual tracking slows visibility</div></div>
+            <div style="border-left:2px solid var(--coral);padding-left:24px;"><div class="mono" style="font-size:14px;color:var(--coral-soft);letter-spacing:.1em;">CHALLENGE 02</div><div style="font-size:21px;color:#fff;margin-top:8px;line-height:1.4;">Hand-offs between teams lose time</div></div>
+            <div style="border-left:2px solid var(--coral);padding-left:24px;"><div class="mono" style="font-size:14px;color:var(--coral-soft);letter-spacing:.1em;">CHALLENGE 03</div><div style="font-size:21px;color:#fff;margin-top:8px;line-height:1.4;">Few shared metrics to steer by</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="pageno">03 / 08</div>
+    </div>
+  </section>
+
+  <!-- 4 OPERATING MODEL -->
+  <section data-label="Operating model">
+    <div class="s ink">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="gm" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gm)"/></svg>
+      <div class="pad">
+        <div class="shead"><span class="idx">03</span><span class="t" style="color:#fff;">Operating model</span><span class="ln"></span></div>
+        <div class="three">
+          <div class="card"><div class="num">/ 01</div><div class="h">Process</div><div class="b">Map, document, and standardize the work so quality doesn't depend on who's on shift.</div></div>
+          <div class="card"><div class="num">/ 02</div><div class="h">People</div><div class="b">Align and coach the team around shared ownership — improvement that outlasts any launch.</div></div>
+          <div class="card"><div class="num">/ 03</div><div class="h">Performance</div><div class="b">Track the few metrics that matter, and review them on a steady cadence.</div></div>
+        </div>
+      </div>
+      <div class="pageno">04 / 08</div>
+    </div>
+  </section>
+
+  <!-- 5 RESULTS -->
+  <section data-label="Results">
+    <div class="s cream">
+      <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="gr" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gr)"/></svg>
+      <div class="pad">
+        <div class="shead"><span class="idx">04</span><span class="t">Results this quarter</span><span class="ln"></span></div>
+        <div class="metrics">
+          <div class="metric"><div class="big">[XX]<em>%</em></div><div class="rule"></div><div class="lbl">faster service turnaround</div></div>
+          <div class="metric"><div class="big">[XX]</div><div class="rule"></div><div class="lbl">processes documented &amp; standardized</div></div>
+          <div class="metric"><div class="big">[XX]<em>%</em></div><div class="rule"></div><div class="lbl">improvement in on-time delivery</div></div>
+        </div>
+        <p class="mono" style="font-size:14px;color:var(--slate);letter-spacing:.06em;margin-top:10px;">Replace [XX] with your real figures before presenting.</p>
+      </div>
+      <div class="pageno">05 / 08</div>
+    </div>
+  </section>
+
+  <!-- 6 ROADMAP -->
+  <section data-label="Roadmap">
+    <div class="s ink">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="grd" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#grd)"/></svg>
+      <div class="pad">
+        <div class="shead"><span class="idx">05</span><span class="t" style="color:#fff;">The road ahead</span><span class="ln"></span></div>
+        <div class="road">
+          <div class="ph"><div class="dot"></div><div class="q">NOW</div><div class="h">Stabilize</div><div class="b">Document core processes and set the baseline metrics.</div></div>
+          <div class="ph"><div class="dot"></div><div class="q">NEXT</div><div class="h">Standardize</div><div class="b">Roll out shared workflows and a weekly review cadence.</div></div>
+          <div class="ph"><div class="dot"></div><div class="q">+2 QTR</div><div class="h">Scale</div><div class="b">Automate tracking and tighten cross-team hand-offs.</div></div>
+          <div class="ph"><div class="dot"></div><div class="q">VISION</div><div class="h">Optimize</div><div class="b">Continuous improvement as a team habit, not a project.</div></div>
+        </div>
+      </div>
+      <div class="pageno">06 / 08</div>
+    </div>
+  </section>
+
+  <!-- 7 RECOMMENDATIONS -->
+  <section data-label="Recommendations">
+    <div class="s cream">
+      <svg class="gridbg" aria-hidden="true" style="opacity:.5"><defs><pattern id="grc" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#grc)"/></svg>
+      <div class="pad">
+        <div class="shead"><span class="idx">06</span><span class="t">Recommendations</span><span class="ln"></span></div>
+        <div class="takes">
+          <div class="take"><span class="n serif-i" style="font-size:40px;">01</span><div class="tx">Invest in shared visibility<span>Stand up a single tracking system so every team works from the same source of truth.</span></div></div>
+          <div class="take"><span class="n serif-i" style="font-size:40px;">02</span><div class="tx">Make the review cadence sacred<span>A short, weekly operations review keeps the few metrics that matter in front of the team.</span></div></div>
+          <div class="take"><span class="n serif-i" style="font-size:40px;">03</span><div class="tx">Resource the next standardization wave<span>Fund the time to document and train — it pays back in speed and fewer errors.</span></div></div>
+        </div>
+      </div>
+      <div class="pageno">07 / 08</div>
+    </div>
+  </section>
+
+  <!-- 8 CLOSING -->
+  <section data-label="Thank you">
+    <div class="s ink">
+      <svg class="gridbg" aria-hidden="true"><defs><pattern id="gcl" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0 L0 0 0 80" fill="none" class="gl" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#gcl)"/></svg>
+      <div class="pad close-s" style="position:relative;">
+        <span class="cmark" style="margin-bottom:30px;"><svg width="44" height="44" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13.5" stroke="currentColor" stroke-width="1.4"/><circle cx="20" cy="20" r="1.7" fill="currentColor"/><line x1="20" y1="0" x2="20" y2="14.5" stroke="currentColor" stroke-width="1.4"/><line x1="20" y1="25.5" x2="20" y2="40" stroke="currentColor" stroke-width="1.4"/><line x1="0" y1="20" x2="14.5" y2="20" stroke="currentColor" stroke-width="1.4"/><line x1="25.5" y1="20" x2="40" y2="20" stroke="currentColor" stroke-width="1.4"/></svg></span>
+        <div class="big">Let's build the<br><em>repeatable</em> version.</div>
+        <div class="contact">
+          <div><div class="k">Email</div><div class="v">nelaprojectmanager@gmail.com</div></div>
+          <div><div class="k">LinkedIn</div><div class="v">in/nela-berling-562434186</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+<script src="deck-stage.js"></script>
+</body>
+</html>

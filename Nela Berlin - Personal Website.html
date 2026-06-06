@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nela Berlin — Mechanical Engineer · M.Sc. Project Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="brand.css" />
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:var(--sans); color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 clamp(24px,5vw,64px); }
+  .serif-i{ font-family:var(--serif); font-style:italic; font-weight:500; }
+  .mono{ font-family:var(--mono); }
+  .eyebrow{ font-weight:600; text-transform:uppercase; letter-spacing:.26em; font-size:12px; }
+  .grid-tex{ position:absolute; inset:0; pointer-events:none; z-index:0; }
+
+  /* NAV */
+  nav{ position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:saturate(140%) blur(14px); background:rgba(251,249,245,.82); border-bottom:1px solid var(--line); }
+  nav .row{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+  nav .brand{ display:flex; align-items:center; gap:13px; }
+  nav .brand .nm{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:30px; white-space:nowrap; }
+  nav .links{ display:flex; align-items:center; gap:38px; }
+  nav .links a{ font-size:14px; font-weight:500; color:var(--slate); transition:color .15s; }
+  nav .links a:hover{ color:var(--ink); }
+  nav .cta{ font-size:13px; font-weight:600; color:#fff; background:var(--ink); padding:11px 20px; border-radius:30px; transition:transform .15s, background .15s; white-space:nowrap; }
+  nav .cta:hover{ background:var(--coral); transform:translateY(-1px); }
+  .menu-btn{ display:none; }
+
+  /* HERO */
+  .hero{ position:relative; padding-top:72px; overflow:hidden; background:var(--cream); }
+  .hero .inner{ display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:center; min-height:calc(100vh - 72px); padding:60px 0; position:relative; z-index:2; }
+  .hero .kick{ display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+  .hero .kick .ln{ width:46px; height:2px; background:var(--coral); }
+  .hero h1{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(58px,8vw,116px); line-height:.92; color:var(--ink); }
+  .hero .role{ margin-top:26px; font-size:clamp(15px,1.5vw,18px); font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--slate); }
+  .hero .lede{ margin-top:30px; font-size:clamp(18px,2vw,23px); line-height:1.55; color:var(--ink-2); max-width:30ch; }
+  .hero .actions{ margin-top:40px; display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{ font-size:15px; font-weight:600; padding:15px 28px; border-radius:34px; transition:transform .15s, box-shadow .15s, background .15s, color .15s; cursor:pointer; }
+  .btn-primary{ background:var(--ink); color:#fff; }
+  .btn-primary:hover{ background:var(--coral); transform:translateY(-2px); box-shadow:0 12px 28px rgba(40,50,63,.18); }
+  .btn-ghost{ border:1px solid var(--line-2); color:var(--ink); }
+  .btn-ghost:hover{ border-color:var(--coral); color:var(--coral); }
+  .hero .photo-col{ position:relative; }
+  .hero .frame{ position:relative; aspect-ratio:4/5; border-radius:18px; overflow:hidden; border:1px solid var(--line); box-shadow:0 30px 70px rgba(40,50,63,.18); }
+  .hero .frame .img{ position:absolute; inset:0; background-image:url('assets/nela-graded.png?v=3'); background-size:cover; background-position:50% 18%; }
+  .hero .frame .scrim{ position:absolute; left:0; right:0; bottom:0; height:40%; background:linear-gradient(transparent,rgba(40,50,63,.4)); }
+  .hero .badge{ position:absolute; bottom:18px; left:18px; right:18px; display:flex; align-items:center; justify-content:space-between; color:#fff; }
+  .hero .badge .nm{ font-family:var(--serif); font-style:italic; font-size:30px; }
+  .hero .badge .co{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; opacity:.85; }
+  .hero .ring{ position:absolute; top:-22px; right:-22px; color:var(--coral); opacity:.5; }
+  .scrollcue{ position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:3; font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--slate); text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .scrollcue .bar{ width:1px; height:34px; background:linear-gradient(var(--coral),transparent); }
+
+  /* SECTION SCAFFOLD */
+  section.block{ padding:clamp(80px,11vw,150px) 0; position:relative; }
+  .sec-head{ display:flex; align-items:center; gap:18px; margin-bottom:54px; }
+  .sec-head .tag{ font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--coral); }
+  .sec-head .ln{ flex:1; height:1px; background:var(--line); }
+  .sec-head h2{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(34px,4vw,54px); color:var(--ink); }
+
+  /* ABOUT */
+  .about{ background:var(--paper); }
+  .about .cols{ display:grid; grid-template-columns:1.3fr 1fr; gap:64px; align-items:start; }
+  .about .lead{ font-family:var(--serif); font-style:italic; font-size:clamp(26px,3.2vw,40px); line-height:1.3; color:var(--ink); }
+  .about p{ font-size:17px; line-height:1.75; color:var(--ink-2); margin-top:24px; max-width:54ch; }
+  .about .side{ background:var(--ink); color:#fff; border-radius:18px; padding:38px 36px; position:relative; overflow:hidden; }
+  .about .side h3{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--coral-soft); margin-bottom:22px; position:relative; }
+  .about .side .focus{ display:flex; flex-wrap:wrap; gap:9px; position:relative; }
+  .about .side .chip{ font-size:13px; font-weight:600; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:22px; padding:8px 15px; }
+  .about .side .langs{ margin-top:28px; padding-top:24px; border-top:1px solid rgba(255,255,255,.15); position:relative; }
+  .about .side .langs .k{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--blue); }
+  .about .side .langs .v{ font-size:18px; font-weight:600; margin-top:6px; }
+
+  /* EXPERIENCE timeline */
+  .exp{ background:var(--cream); }
+  .tl{ position:relative; }
+  .tl .item{ display:grid; grid-template-columns:200px 1fr; gap:46px; padding:32px 0; border-top:1px solid var(--line); position:relative; }
+  .tl .item:last-child{ border-bottom:1px solid var(--line); }
+  .tl .when{ font-family:var(--mono); font-size:13px; letter-spacing:.08em; color:var(--slate); padding-top:6px; }
+  .tl .what .role{ font-family:var(--serif); font-style:italic; font-size:clamp(24px,2.6vw,34px); color:var(--ink); line-height:1.1; }
+  .tl .what .org{ font-size:14px; font-weight:700; color:var(--coral); text-transform:uppercase; letter-spacing:.08em; margin-top:8px; }
+  .tl .what p{ font-size:16px; line-height:1.65; color:var(--ink-2); margin-top:14px; max-width:62ch; }
+
+  /* PROJECTS */
+  .projects{ background:var(--ink); color:#fff; }
+  .projects .sec-head h2{ color:#fff; } .projects .sec-head .ln{ background:rgba(255,255,255,.18); }
+  .pgrid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .pcard{ border:1px solid rgba(255,255,255,.16); border-radius:20px; padding:40px 38px; position:relative; overflow:hidden; background:rgba(255,255,255,.02); transition:transform .2s, border-color .2s, background .2s; }
+  .pcard:hover{ transform:translateY(-4px); border-color:var(--coral); background:rgba(255,255,255,.04); }
+  .pcard .pnum{ font-family:var(--mono); font-size:13px; letter-spacing:.14em; color:var(--coral-soft); }
+  .pcard .ptype{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--slate-soft); float:right; }
+  .pcard h3{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(28px,3vw,38px); margin:18px 0 0; line-height:1.08; }
+  .pcard p{ font-size:16px; line-height:1.65; color:var(--blue); margin-top:16px; }
+  .pcard .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+  .pcard .tags span{ font-size:11.5px; font-weight:600; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); border-radius:18px; padding:5px 12px; }
+  .pcard .corner{ position:absolute; top:22px; right:24px; color:var(--coral); opacity:.5; }
+
+  /* CONTACT */
+  .contact{ background:var(--cream); text-align:center; }
+  .contact .big{ font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(40px,6vw,84px); line-height:1.05; color:var(--ink); max-width:18ch; margin:0 auto; }
+  .contact .big em{ color:var(--coral); }
+  .contact .sub{ font-size:clamp(17px,2vw,21px); color:var(--ink-2); margin-top:26px; max-width:44ch; margin-left:auto; margin-right:auto; line-height:1.6; }
+  .contact .links{ margin-top:44px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+  .contact .mailrow{ margin-top:38px; font-family:var(--mono); font-size:clamp(15px,2vw,20px); letter-spacing:.06em; color:var(--slate); }
+
+  /* FOOTER */
+  footer{ background:var(--ink); color:#fff; padding:50px 0; }
+  footer .row{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  footer .brand{ display:flex; align-items:center; gap:13px; }
+  footer .brand .nm{ font-family:var(--serif); font-style:italic; font-size:28px; }
+  footer .meta{ font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--slate-soft); }
+  footer .fl{ display:flex; gap:26px; }
+  footer .fl a{ font-size:13px; color:var(--blue); transition:color .15s; }
+  footer .fl a:hover{ color:#fff; }
+
+  /* reveal */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } html{ scroll-behavior:auto; } }
+
+  /* RESPONSIVE */
+  @media (max-width:920px){
+    nav .links{ display:none; }
+    .menu-btn{ display:flex; }
+    .hero .inner{ grid-template-columns:1fr; gap:40px; min-height:auto; padding:48px 0 70px; }
+    .hero .photo-col{ max-width:420px; }
+    .about .cols{ grid-template-columns:1fr; gap:40px; }
+    .tl .item{ grid-template-columns:1fr; gap:10px; }
+    .tl .when{ padding-top:0; }
+    .pgrid{ grid-template-columns:1fr; }
+    .scrollcue{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap row">
+    <a class="brand" href="#top">
+      <span style="color:var(--coral);"><svg width="26" height="26" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.3"/><circle cx="15" cy="15" r="1.4" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.3"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.3"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.3"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.3"/></svg></span>
+      <span class="nm">Nela Berlin</span>
+    </a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="cta">Get in touch</a>
+    </div>
+    <a class="menu-btn cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <svg class="grid-tex" aria-hidden="true"><defs><pattern id="hg" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0 L0 0 0 72" fill="none" stroke="rgba(40,50,63,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#hg)"/></svg>
+  <div class="wrap inner">
+    <div class="intro">
+      <div class="kick">
+        <span class="ln"></span>
+        <span class="eyebrow" style="color:var(--coral);">Mechanical Engineer · M.Sc. Project Management</span>
+      </div>
+      <h1>Operational<br>excellence,<br>by design.</h1>
+      <div class="role">Mechanical Engineer · M.Sc. Project Management</div>
+      <p class="lede">I help turn complex operations into clear, repeatable systems — where engineering precision meets collaborative, cross-functional coordination.</p>
+      <div class="actions">
+        <a href="#projects" class="btn btn-primary">View projects</a>
+        <a href="#contact" class="btn btn-ghost">Let's connect</a>
+      </div>
+    </div>
+    <div class="photo-col">
+      <span class="ring"><svg width="54" height="54" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1"/><circle cx="15" cy="15" r="1.2" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1"/></svg></span>
+      <div class="frame">
+        <div class="img"></div>
+        <div class="scrim"></div>
+        <div class="badge">
+          <span class="nm">Nela Berlin</span>
+          <span class="co">STL · ES / EN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Scroll</span><span class="bar"></span></div>
+</header>
+
+<!-- ABOUT -->
+<section class="block about" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="tag">01</span><h2>About</h2><span class="ln"></span></div>
+    <div class="cols">
+      <div class="reveal">
+        <p class="lead">A mechanical engineer and project coordinator focused on operations, continuous improvement, and multidisciplinary teamwork.</p>
+        <p>My interest in engineering, industry, and energy started early — growing up around a family renewable-energy business. That sparked a lasting passion for innovation, sustainability, and continuous improvement.</p>
+        <p>Today I specialize in service operations and technical coordination: aligning customers, production, and service teams; documenting processes so quality doesn't depend on who's on shift; and turning one-off fixes into systems the whole team can run. I lead with clarity, measure what matters, and coach people so improvement sticks.</p>
+      </div>
+      <aside class="side reveal">
+        <svg class="grid-tex" aria-hidden="true" style="opacity:.6"><defs><pattern id="ag" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0 L0 0 0 44" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#ag)"/></svg>
+        <h3>Focus &amp; interests</h3>
+        <div class="focus">
+          <span class="chip">Project Management</span>
+          <span class="chip">Operations</span>
+          <span class="chip">Process Improvement</span>
+          <span class="chip">Continuous Improvement</span>
+          <span class="chip">Renewable Energy</span>
+          <span class="chip">Sustainability</span>
+          <span class="chip">Industrial Operations</span>
+        </div>
+        <div class="langs">
+          <div class="k">Education</div>
+          <div class="v">M.Sc. Project Management &amp; Direction · B.Sc. Mechanical Engineering</div>
+        </div>
+        <div class="langs">
+          <div class="k">Languages</div>
+          <div class="v">Español · English — Bilingual</div>
+        </div>
+        <div class="langs">
+          <div class="k">Based in</div>
+          <div class="v">St. Louis, Missouri</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="block exp" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="tag">02</span><h2>Experience</h2><span class="ln"></span></div>
+    <div class="tl">
+      <div class="item reveal">
+        <div class="when">Aspen Spas</div>
+        <div class="what">
+          <div class="role">Service Operations &amp; Project Coordination</div>
+          <div class="org">Operations &amp; Service Coordinator</div>
+          <p>Coordinated technical service operations — technician scheduling and end-to-end work-order tracking — keeping customers, sales, production, and service aligned. Implemented operational tracking systems supporting 100+ service orders per month and improving workflow visibility.</p>
+        </div>
+      </div>
+      <div class="item reveal">
+        <div class="when">Roghur S.A.</div>
+        <div class="what">
+          <div class="role">Olive-Oil Plant Commissioning</div>
+          <div class="org">Greenfield Project</div>
+          <p>Helped implement and commission an olive-oil processing plant from the ground up — coordinating with Food Engineering, supervising machinery assembly, and verifying alignment and correct installation of process systems.</p>
+        </div>
+      </div>
+      <div class="item reveal">
+        <div class="when">Technical Project</div>
+        <div class="what">
+          <div class="role">Mechanical Workshop — Design &amp; Sizing</div>
+          <div class="org">Mining &amp; Industry</div>
+          <p>Led the conceptual design and sizing of a mechanical workshop built around continuous improvement, selecting tooling and resources to deliver specialized services to mining and industrial clients.</p>
+        </div>
+      </div>
+      <div class="item reveal">
+        <div class="when">PMI · Volunteer</div>
+        <div class="what">
+          <div class="role">Professional Development &amp; Networking</div>
+          <div class="org">Project Management Institute</div>
+          <p>Volunteered alongside board members and organizing teams to advance networking, leadership, and professional-development initiatives within the local project-management community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="block projects" id="projects">
+  <svg class="grid-tex" aria-hidden="true"><defs><pattern id="pg" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0 L0 0 0 72" fill="none" stroke="rgba(255,255,255,.045)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#pg)"/></svg>
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="sec-head reveal"><span class="tag">03</span><h2>Selected projects</h2><span class="ln"></span></div>
+    <div class="pgrid">
+      <article class="pcard reveal">
+        <span class="corner"><svg width="22" height="22" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        <span class="pnum">01</span><span class="ptype">Greenfield · Operations</span>
+        <h3>Olive-Oil Processing Plant</h3>
+        <p>Took part in implementing and commissioning a processing plant from zero with Roghur S.A. — coordinating equipment installation, supervising assembly, and verifying alignment and start-up. Also trained in Argentina as an olive-oil taster and processor.</p>
+        <div class="tags"><span>Commissioning</span><span>Industrial Equipment</span><span>Sensory Analysis</span></div>
+      </article>
+      <article class="pcard reveal">
+        <span class="corner"><svg width="22" height="22" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        <span class="pnum">02</span><span class="ptype">Design · Mining</span>
+        <h3>Mechanical Workshop Design</h3>
+        <p>Designed and sized a continuous-improvement workshop for mining and industry — selecting tooling, equipment, and resources, and contributing to technical proposals and tenders.</p>
+        <div class="tags"><span>Facility Design</span><span>Capacity Sizing</span><span>Continuous Improvement</span></div>
+      </article>
+      <article class="pcard reveal">
+        <span class="corner"><svg width="22" height="22" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        <span class="pnum">03</span><span class="ptype">Energy · Sustainability</span>
+        <h3>Renewable Energy Foundations</h3>
+        <p>Grew up immersed in a family renewable-energy business — the origin of a lasting focus on sustainability, energy efficiency, and technology with positive impact.</p>
+        <div class="tags"><span>Renewable Energy</span><span>Sustainability</span><span>Energy Efficiency</span></div>
+      </article>
+      <article class="pcard reveal">
+        <span class="corner"><svg width="22" height="22" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span>
+        <span class="pnum">04</span><span class="ptype">Leadership · Community</span>
+        <h3>PMI Volunteer Leadership</h3>
+        <p>Volunteered with the Project Management Institute — supporting professional events alongside the board and advancing networking, leadership, and development initiatives.</p>
+        <div class="tags"><span>Networking</span><span>Leadership</span><span>Community</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="block contact" id="contact">
+  <svg class="grid-tex" aria-hidden="true" style="opacity:.5"><defs><pattern id="cg" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0 L0 0 0 72" fill="none" stroke="rgba(40,50,63,.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#cg)"/></svg>
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="reveal">
+      <div style="display:flex;justify-content:center;margin-bottom:30px;color:var(--coral);"><svg width="40" height="40" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.2"/><circle cx="15" cy="15" r="1.4" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.2"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.2"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.2"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.2"/></svg></span></div>
+      <h2 class="big">Let's build the <em>repeatable</em> version.</h2>
+      <p class="sub">Open to mechanical engineering, project coordination, and operations &amp; service coordination roles — plus collaborations and networking.</p>
+      <div class="links">
+        <a href="mailto:nelaprojectmanager@gmail.com" class="btn btn-primary">Email me</a>
+        <a href="https://www.linkedin.com/in/nela-berling-562434186" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+      </div>
+      <div class="mailrow">nelaprojectmanager@gmail.com</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap row">
+    <a class="brand" href="#top">
+      <span style="color:var(--coral);"><svg width="24" height="24" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="10" stroke="currentColor" stroke-width="1.3"/><circle cx="15" cy="15" r="1.4" fill="currentColor"/><line x1="15" y1="0" x2="15" y2="11" stroke="currentColor" stroke-width="1.3"/><line x1="15" y1="19" x2="15" y2="30" stroke="currentColor" stroke-width="1.3"/><line x1="0" y1="15" x2="11" y2="15" stroke="currentColor" stroke-width="1.3"/><line x1="19" y1="15" x2="30" y2="15" stroke="currentColor" stroke-width="1.3"/></svg></span>
+      <span class="nm">Nela Berlin</span>
+    </a>
+    <div class="fl">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span class="meta">© 2026 · St. Louis, MO</span>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.16 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#28323f"/>
+    <g stroke="#c2856b" stroke-width="2.4" fill="none">
+      <circle cx="50" cy="50" r="16"/>
+      <line x1="50" y1="28" x2="50" y2="38"/><line x1="50" y1="62" x2="50" y2="72"/>
+      <line x1="28" y1="50" x2="38" y2="50"/><line x1="62" y1="50" x2="72" y2="50"/>
+    </g>
+    <circle cx="50" cy="50" r="2.6" fill="#c2856b"/>
+  </svg>
+</template>
+</body>
+</html>
