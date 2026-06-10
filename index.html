@@ -233,10 +233,10 @@
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top" class="brand" aria-label="Nela Berlin">
+    <a href="#top" class="brand" aria-label="Nela">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-txt">
-        <b>Nela Berlin</b>
+        <b>Nela</b>
         <span data-es="Ingeniera Mecánica · Project Manager" data-en="Mechanical Engineer · Project Manager">Ingeniera Mecánica · Project Manager</span>
       </span>
     </a>
@@ -553,8 +553,8 @@
 <footer>
   <div class="wrap">
     <span class="script">Estrategia con alma</span>
-    <span data-es="© 2026 Nela Berlin · Tu vida también es un proyecto · #ConOSinTitulo"
-          data-en="© 2026 Nela Berlin · Your life is a project too · #ConOSinTitulo">© 2026 Nela Berlin · Tu vida también es un proyecto · #ConOSinTitulo</span>
+    <span data-es="© 2026 Nela · Tu vida también es un proyecto · #ConOSinTitulo"
+          data-en="© 2026 Nela · Your life is a project too · #ConOSinTitulo">© 2026 Nela · Tu vida también es un proyecto · #ConOSinTitulo</span>
   </div>
 </footer>
 
@@ -610,7 +610,9 @@
     }
     var done = function(){
       ok.style.color = 'var(--gold)';
-      ok.textContent = lang==='es' ? '¡Listo! Pronto recibirás la guía. ✦' : 'Done! Your guide is on its way. ✦';
+      ok.textContent = lang==='es'
+        ? '¡Listo! Revisa tu correo para confirmar y recibir la guía. Si no llega en unos minutos, mira tu carpeta de spam. ✦'
+        : 'Done! Check your inbox to confirm and get the guide. If it doesn\'t arrive in a few minutes, check your spam folder. ✦';
       input.value = '';
     };
     var fail = function(){
